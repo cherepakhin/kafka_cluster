@@ -32,4 +32,4 @@ kafka-cluster/consumer$ ./gradlew bootRun
 
 Статья на тему [https://v.perm.ru/index.php/instrumenty-devops/work-with-kafka](https://v.perm.ru/index.php/instrumenty-devops/work-with-kafka).
 
-Проект многомодульный [https://spring.io/guides/gs/multi-module](https://spring.io/guides/gs/multi-module).
+[Проект многомодульный](https://v.perm.ru/index.php/component/content/article/multi-module-project?catid=15), [https://spring.io/guides/gs/multi-module](https://spring.io/guides/gs/multi-module).
