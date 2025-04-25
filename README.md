@@ -27,6 +27,12 @@ kafka-cluster$ ./gradlew :producer:bootRun
 Прием:
 
 ````shell
+kafka-cluster$ ./gradlew :consumer:bootRun
+````
+
+или
+
+````shell
 kafka-cluster/consumer$ ./gradlew bootRun
 ````
 
