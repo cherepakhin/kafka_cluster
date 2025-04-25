@@ -15,36 +15,37 @@ import ru.home.kafka.dto.JsonMessage;
 @Slf4j
 public class KafkaConsumerListeners {
 
+    // Ниже 2 получателя (handle1, handle2) для одного топика
+    // Сообщения будут доставлены ОБОИМ получателям
     @KafkaListener(
-            // Определяет группу консюмера
+            // Группа консюмера
             id = "consumer-group-1",
-            // Определяет топик откуда читаем
+            // Топик
             topics = "${kafka.topics.test-topic}",
-            // ВАЖНО: определяет фабрику, которую мы используем. Иначе используется фабрика по умолчанию и многопоточность не работает
+            // ВАЖНО: определяет фабрику, которую мы используем.
+            // Иначе используется фабрика по умолчанию и многопоточность не работает
             containerFactory = "kafkaListenerContainerFactory")
-    public void handle(@Payload JsonMessage message) {
-        readMessage(message);
+    public void handle1(@Payload JsonMessage message) {
+        printMessage(message, "consumer-group-1_handle1");
     }
 
     @KafkaListener(
-            // Определяет группу консюмера
+            // Группа консюмера
             id = "consumer-group-2",
-            // Определяет топик откуда читаем
+            // Топик
             topics = "${kafka.topics.test-topic}",
-            // ВАЖНО: определяет фабрику, которую мы используем. Иначе используется фабрика по умолчанию и многопоточность не работает
+            // ВАЖНО: определить фабрику.
+            // Иначе используется фабрика по умолчанию и многопоточность не работает
             containerFactory = "kafkaListenerContainerFactory")
     public void handle2(@Payload JsonMessage message) {
-        readMessage(message);
+        printMessage(message, "consumer-group-2");
     }
 
-    public void readMessage(JsonMessage message) {
+    public void printMessage(JsonMessage message, String idConsumerGroup) {
         long number = message.getNumber();
+        // Имя потока для интереса. Никакой функциональной ценности не несет.
         String currentThreadName = Thread.currentThread().getName();
-        log.info("Прочитано сообщение с номером: {} в потоке: {}", number, currentThreadName);
-        if (number % 100 == 0) {
-            log.info("Сообщение кратно 100");
-            throw new RuntimeException("Получено сообщение с номером кратным 100");
-        }
+        log.info("Получено idConsumerGroup={} сообщение {} в потоке: {} ", idConsumerGroup, message, currentThreadName);
     }
 
 }

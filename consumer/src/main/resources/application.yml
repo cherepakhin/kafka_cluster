@@ -5,7 +5,7 @@ spring:
     name: kafka-example-consumer
   kafka:
     # Адреса всех брокеров кластера
-    bootstrap-servers: host.docker.internal:29092,host.docker.internal:29093
+    bootstrap-servers: 192.168.1.20:9092
     listener:
       # Получение каждой записи должно быть подтверждено
       ack-mode: record

@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group = 'ru.home.kafka'
+version = '0.0.1-SNAPSHOT'
+
+jar {
+    enabled = true
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

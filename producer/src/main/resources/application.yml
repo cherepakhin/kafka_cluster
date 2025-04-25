@@ -1,7 +1,7 @@
 spring:
   kafka:
     # Перечисляем всех наших брокеров
-    bootstrap-servers: host.docker.internal:29092,host.docker.internal:29093
+    bootstrap-servers: 192.168.1.20:9092
     producer:
       # Настраиваем сериализацию сообщений
       key-serializer: org.apache.kafka.common.serialization.StringSerializer

@@ -22,6 +22,7 @@ dependencies {
     implementation 'org.springframework.kafka:spring-kafka'
     implementation 'org.apache.kafka:kafka-clients'
     implementation 'com.fasterxml.jackson.core:jackson-databind'
+//    implementation 'ru.home.kafka.dto:dto'
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
 }

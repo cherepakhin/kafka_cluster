@@ -18,16 +18,16 @@ public class KafkaProducer {
     private String topic;
 
     private int messageNumber = 0;
+    private final int maxMessages = 3;
 
     private final KafkaTemplate<Object, Object> kafkaTemplate;
 
     public void sendMessages() {
-        while (messageNumber != 10_000) {
+        while (messageNumber != maxMessages) {
             messageNumber++;
-            JsonMessage jsonMessage = JsonMessage.builder()
-                    .number(messageNumber)
-                    .message("message number " + messageNumber)
-                    .build();
+            JsonMessage jsonMessage = new JsonMessage();
+            jsonMessage.setNumber(messageNumber);
+            jsonMessage.setMessage("message number " + messageNumber);
             kafkaTemplate.send(topic, String.valueOf(ThreadLocalRandom.current().nextLong()), jsonMessage);
             log.info("Отправлено сообщение номер {}", messageNumber);
         }
